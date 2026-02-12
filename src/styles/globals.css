@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+:root {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-mono: "Space Mono", "Courier New", monospace;
+  --font-body: "DM Sans", system-ui, sans-serif;
+
+  --ink: #0a0a0a;
+  --paper: #f5f4f0;
+  --ash: #1a1a1a;
+  --mist: #e8e6e0;
+  --slate: #888888;
+  --accent: #c8b89a;
+  --white: #ffffff;
+
+  --grid-color: rgba(255, 255, 255, 0.04);
+  --grid-size: 60px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border-radius: 0 !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Remove all default browser radius */
+input,
+textarea,
+button,
+select,
+a {
+  border-radius: 0 !important;
+  outline: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--slate);
+}
+
+/* Selection */
+::selection {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* Utility classes */
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Animated grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  animation: gridDrift 30s linear infinite;
+}
+
+@keyframes gridDrift {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 60px;
+  }
+}
+
+/* Scan line overlay */
+.scan-line {
+  background: linear-gradient(
+    transparent 0%,
+    transparent 49.5%,
+    rgba(255, 255, 255, 0.015) 50%,
+    transparent 50.5%,
+    transparent 100%
+  );
+  background-size: 100% 4px;
+  animation: scanMove 8s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scanMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100vh;
+  }
+}
+
+/* Horizontal scroll container */
+.horizontal-scroll-container {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--slate) var(--ink);
+}
+
+.horizontal-scroll-item {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* Label / Tag styling */
+.label-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+/* Divider */
+.rule-line {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+}
+
+/* Cert badge */
+.cert-badge {
+  border: 1px solid rgba(200, 184, 154, 0.4);
+  color: var(--accent);
+}
+
+/* Input base */
+.input-base {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--paper);
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  width: 100%;
+  transition: border-color 0.2s ease;
+}
+
+.input-base:focus {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.input-base::placeholder {
+  color: var(--slate);
+  font-size: 13px;
+}
+
+/* Counter animation */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
