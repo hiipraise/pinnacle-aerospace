@@ -3,7 +3,7 @@ export const SITE_CONFIG = {
   tagline: "Precision Above All",
   description:
     "FAA & EASA certified aircraft maintenance, repair, and overhaul organization delivering precision engineering for commercial and private aviation.",
-  email: "operations@pinnacleaerospace.aero",
+  email: "pinnaservice@yanemail.com",
   certifications: ["FAA Repair Station", "EASA Part-145", "AS9110C Certified"],
   founded: "2004",
   address: {
