@@ -77,6 +77,7 @@ export default function LeadershipSection() {
 
         {/* Director layout: two images + info */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-px bg-white/6">
+
           {/* Primary image — larger */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
