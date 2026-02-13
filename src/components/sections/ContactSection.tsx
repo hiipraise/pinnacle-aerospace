@@ -46,31 +46,33 @@ export default function ContactSection() {
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus('loading')
-    setErrorMessage('')
+  e.preventDefault()
+  setStatus('loading')
+  setErrorMessage('')
 
-    try {
-      const res = await fetch('https://formspree.io/f/mqadgngy', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
+  try {
+    const res = await fetch('https://formspree.io/f/xdalewav', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(form),
+    })
 
+    if (res.ok) {
+      setStatus('success')
+      setForm({ name: '', company: '', email: '', service: '', message: '' })
+    } else {
       const data = await res.json()
-
-      if (data.success) {
-        setStatus('success')
-        setForm({ name: '', company: '', email: '', service: '', message: '' })
-      } else {
-        setStatus('error')
-        setErrorMessage(data.error || 'An error occurred. Please try again.')
-      }
-    } catch {
       setStatus('error')
-      setErrorMessage('Network error. Please check your connection and try again.')
+      setErrorMessage(data?.errors?.[0]?.message || 'Something went wrong.')
     }
+  } catch {
+    setStatus('error')
+    setErrorMessage('Network error. Please check your connection.')
   }
+}
 
   return (
     <section id="contact" className="relative py-24 lg:py-36 overflow-hidden" ref={sectionRef}>
